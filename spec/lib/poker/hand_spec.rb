@@ -52,5 +52,11 @@ describe Poker::Hand do
       
       it { should eq 6 }
     end
+    
+    context "When a four of a kind is found" do
+      let(:hand) { Poker::Hand.new '2H 2S 2D 2D JD' }
+      
+      it { should eq 7 }
+    end
   end
 end

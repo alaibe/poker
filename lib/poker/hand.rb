@@ -5,10 +5,11 @@ module Poker
     attr_reader :cards
     
     RANK = {
+      7 => :four_of_a_kind?,
       6 => :full_house?,
       5 => :flush?,
       4 => :straight?,
-      3 => :three_of_kind?,
+      3 => :three_of_a_kind?,
       2 => :two_pair?,
       1 => :pair?,
       0 => :highest?
@@ -46,7 +47,7 @@ module Poker
       cards_grouped_by_value.select { |value_group| value_group.count == 2 }.length == 2
     end
     
-    def three_of_kind?
+    def three_of_a_kind?
       cards_grouped_by_value.select { |value_group| value_group.count == 3 }.length == 1
     end
     
@@ -59,7 +60,11 @@ module Poker
     end
     
     def full_house?
-      three_of_kind? && pair?
+      three_of_a_kind? && pair?
+    end
+    
+    def four_of_a_kind?
+      cards_grouped_by_value.select { |value_group| value_group.count == 4 }.length == 1
     end
     
     def ordered_cards
