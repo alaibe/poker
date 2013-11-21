@@ -1,0 +1,4 @@
+poker
+=====
+
+Poker hand kata
