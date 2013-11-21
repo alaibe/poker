@@ -8,8 +8,6 @@ module Poker
       @to_i ||= VALUES.index value
     end
     
-    protected
-    
     def <=>(card)
       to_i <=> card.to_i
     end

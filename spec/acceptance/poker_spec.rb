@@ -5,7 +5,7 @@ describe 'Poker' do
   let(:nine_kicker) { '2H 3H 8S 9D 4D' }
   
   describe 'an as kicker beat a nine kicker' do
-    result = Poker::Hand.new(as_kicker) > Poker::Hand.new(nine_kicker)
-    expect(result).to be_true
+    subject { Poker::Hand.new(as_kicker) > Poker::Hand.new(nine_kicker) }
+    it { should be_true }
   end
 end
