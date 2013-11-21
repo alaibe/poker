@@ -5,6 +5,7 @@ module Poker
     attr_reader :cards
     
     RANK = {
+      5 => :flush?,
       4 => :straight?,
       3 => :three_of_kind?,
       2 => :two_pair?,
@@ -52,12 +53,20 @@ module Poker
       ordered_cards.map(&:to_i).each_cons(2).all? { |x, y| y == x + 1 }
     end
     
+    def flush?
+      cards_grouped_by_suit.select { |value_group| value_group.count == 5 }.length == 1
+    end
+    
     def ordered_cards
       cards.sort_by(&:to_i)
     end
     
     def cards_grouped_by_value
-      cards.group_by { |card| card.value }.values
+      cards.group_by(&:value).values
+    end
+    
+    def cards_grouped_by_suit
+      cards.group_by(&:suit).values
     end
 
   end

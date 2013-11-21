@@ -40,5 +40,11 @@ describe Poker::Hand do
       
       it { should eq 4 }
     end
+    
+    context "When a flush is found" do
+      let(:hand) { Poker::Hand.new '2D 3D 9D 5D 8D' }
+      
+      it { should eq 5 }
+    end
   end
 end
