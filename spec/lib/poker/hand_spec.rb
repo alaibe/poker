@@ -18,15 +18,21 @@ describe Poker::Hand do
     end
     
     context "When a pair is found" do
-      let(:hand) { Poker::Hand.new '2H 2H 8S AD JD' }
+      let(:hand) { Poker::Hand.new '2H 2S 8S AD JD' }
       
       it { should eq 1 }
     end
     
     context "When a two pair is found" do
-      let(:hand) { Poker::Hand.new '2H 2H AS AD JD' }
+      let(:hand) { Poker::Hand.new '2H 2S AS AD JD' }
       
       it { should eq 2 }
+    end
+    
+    context "When a three of a kind is found" do
+      let(:hand) { Poker::Hand.new '2H 2S 2D AD JD' }
+      
+      it { should eq 3 }
     end
   end
 end

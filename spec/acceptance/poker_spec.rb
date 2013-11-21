@@ -1,10 +1,11 @@
 require_relative '../spec_helper'
 
 describe 'Poker' do
-  let(:as_kicker)   { '2H 3H 8S AD JD' }
-  let(:nine_kicker) { '2H 3H 8S 9D 4D' }
-  let(:pair)        { '2H 2H 8S AD JD' }
-  let(:two_pair)    { '2H 2H 8S 8D JD' }
+  let(:as_kicker)       { '2H 3H 8S AD JD' }
+  let(:nine_kicker)     { '2H 3H 8S 9D 4D' }
+  let(:pair)            { '2H 2S 8S AD JD' }
+  let(:two_pair)        { '2H 2H 8S 8D JD' }
+  let(:three_of_a_kind) { '2H 2S 2D 8D JD' }
   
   describe 'an as kicker beats a nine kicker' do
     subject { Poker::Hand.new(as_kicker) > Poker::Hand.new(nine_kicker) }
@@ -18,6 +19,11 @@ describe 'Poker' do
   
   describe 'two pair beats a pair' do
     subject { Poker::Hand.new(two_pair) > Poker::Hand.new(as_kicker) }
+    it { should be_true }
+  end
+  
+  describe 'three of a kind beats two_pair' do
+    subject { Poker::Hand.new(three_of_a_kind) > Poker::Hand.new(two_pair) }
     it { should be_true }
   end
 end
