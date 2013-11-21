@@ -22,5 +22,11 @@ describe Poker::Hand do
       
       it { should eq 1 }
     end
+    
+    context "When a two pair is found" do
+      let(:hand) { Poker::Hand.new '2H 2H AS AD JD' }
+      
+      it { should eq 2 }
+    end
   end
 end

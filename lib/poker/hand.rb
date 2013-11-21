@@ -2,7 +2,10 @@ module Poker
   class Hand
     include Comparable
     
+    attr_reader :cards
+    
     RANK = {
+      2 => :two_pair?,
       1 => :pair?,
       0 => :highest?
     }
@@ -32,11 +35,20 @@ module Poker
     end
     
     def pair?
-      @cards.map(&:to_i).uniq.length == 4
+      cards_grouped_by_value.select { |value_group| value_group.count == 2 }.length == 1
+    end
+    
+    def two_pair?
+      cards_grouped_by_value.select { |value_group| value_group.count == 2 }.length == 2
     end
     
     def ordered_cards
-      @cards.sort_by(&:to_i)
+      cards.sort_by(&:to_i)
     end
+    
+    def cards_grouped_by_value
+      cards.group_by { |card| card.value }.values
+    end
+
   end
 end
