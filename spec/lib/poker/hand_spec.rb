@@ -34,5 +34,11 @@ describe Poker::Hand do
       
       it { should eq 3 }
     end
+    
+    context "When a straight is found" do
+      let(:hand) { Poker::Hand.new '2H 3S 4D 5D 6D' }
+      
+      it { should eq 4 }
+    end
   end
 end

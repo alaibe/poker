@@ -5,6 +5,7 @@ module Poker
     attr_reader :cards
     
     RANK = {
+      4 => :straight?,
       3 => :three_of_kind?,
       2 => :two_pair?,
       1 => :pair?,
@@ -45,6 +46,10 @@ module Poker
     
     def three_of_kind?
       cards_grouped_by_value.select { |value_group| value_group.count == 3 }.length == 1
+    end
+    
+    def straight?
+      ordered_cards.map(&:to_i).each_cons(2).all? { |x, y| y == x + 1 }
     end
     
     def ordered_cards
