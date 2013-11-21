@@ -58,5 +58,11 @@ describe Poker::Hand do
       
       it { should eq 7 }
     end
+    
+    context "When a straight flush is found" do
+      let(:hand) { Poker::Hand.new '2D 3D 4D 5D 6D' }
+      
+      it { should eq 8 }
+    end
   end
 end

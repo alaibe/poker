@@ -5,6 +5,7 @@ module Poker
     attr_reader :cards
     
     RANK = {
+      8 => :straight_flush?,
       7 => :four_of_a_kind?,
       6 => :full_house?,
       5 => :flush?,
@@ -65,6 +66,10 @@ module Poker
     
     def four_of_a_kind?
       cards_grouped_by_value.select { |value_group| value_group.count == 4 }.length == 1
+    end
+    
+    def straight_flush?
+      straight? && flush?
     end
     
     def ordered_cards
