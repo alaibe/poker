@@ -5,6 +5,7 @@ module Poker
     attr_reader :cards
     
     RANK = {
+      6 => :full_house?,
       5 => :flush?,
       4 => :straight?,
       3 => :three_of_kind?,
@@ -55,6 +56,10 @@ module Poker
     
     def flush?
       cards_grouped_by_suit.select { |value_group| value_group.count == 5 }.length == 1
+    end
+    
+    def full_house?
+      three_of_kind? && pair?
     end
     
     def ordered_cards

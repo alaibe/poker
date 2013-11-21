@@ -46,5 +46,11 @@ describe Poker::Hand do
       
       it { should eq 5 }
     end
+    
+    context "When a full house is found" do
+      let(:hand) { Poker::Hand.new '2H 2S 2D JD JD' }
+      
+      it { should eq 6 }
+    end
   end
 end

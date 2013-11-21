@@ -8,6 +8,7 @@ describe 'Poker' do
   let(:three_of_a_kind) { '2H 2S 2D 8D JD' }
   let(:straight)        { '2H 3S 4D 5D 6D' }
   let(:flush)           { '2H 9H 4H 5H 6H' }
+  let(:full_house)      { '2H 2S 2D JD JD' }
   
   describe 'an as kicker beats a nine kicker' do
     subject { Poker::Hand.new(as_kicker) > Poker::Hand.new(nine_kicker) }
@@ -36,6 +37,11 @@ describe 'Poker' do
   
   describe 'flush beats straight' do
     subject { Poker::Hand.new(flush) > Poker::Hand.new(straight) }
+    it { should be_true }
+  end
+  
+  describe 'full house beats flush' do
+    subject { Poker::Hand.new(full_house) > Poker::Hand.new(flush) }
     it { should be_true }
   end
 end
